@@ -33,7 +33,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{
+      elements: {
+        footer: "hidden",
+      },
+    }}>
       <html lang="en" suppressHydrationWarning>
         <body className={GeistSans.className}>
           <Provider>

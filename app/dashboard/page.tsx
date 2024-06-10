@@ -3,15 +3,24 @@ import { BarChartComponent } from './(components)/BarChart'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { auth } from '@clerk/nextjs/server'
+import { currentUser } from '@clerk/nextjs/server';
+
 
 export default async function Dashboard() {
+  auth().protect()
+  const user = await currentUser();
+  if (!user) {
+    return <div>You must be signed in to access this page.</div>
+  }
+
 
   return (
     <div className='flex flex-col justify-center items-start flex-wrap px-4 pt-4 gap-4'>
       <Card className='w-[20rem]'>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">
-            Welcome
+            Welcome {user.firstName}
           </CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
