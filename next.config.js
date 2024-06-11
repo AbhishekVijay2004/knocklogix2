@@ -27,6 +27,7 @@ const nextConfig = {
       port: '',
       pathname: '/**'
     }]
-  }
+  },
+  output: 'standalone',
 };
 module.exports = nextConfig;
